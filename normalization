@@ -1,0 +1,65 @@
+#!/bin/python
+
+import sys
+import os
+import math
+# Complete the function below.
+
+
+def  normalize_t(x_input):
+    '''
+    YOUR CODE GOES HERE
+    '''
+    x_mean = 0
+    x_sum = 0
+    x_sqr = 0
+    for x in x_input:
+        x_sum += x
+        #print x_input
+    x_mean = float(x_sum*1.0/len(x_input))
+    print x_mean
+    
+    for x in x_input:
+        x_sqr += (x - x_mean)**2
+        print x_sqr
+        
+    x_sqrt = (x_sqr/len(x_input))**(0.5)
+    print "sqr=%10.3f" %x_sqr
+    print "sqrt=%10.3f" %x_sqrt
+
+    x_output = []
+    if x_sqrt == 0:
+        return x_input
+    else:
+        for x in x_input:
+            print (x - x_mean)/x_sqrt
+            x_output.append(float("{0:.3f}".format((x - x_mean)/x_sqrt)))
+        print x_output
+        return x_output
+
+f = open(os.environ['OUTPUT_PATH'], 'w')
+    
+
+test = [20, 21, 25, 24, 23]
+
+
+print normalize_t(test)
+
+
+#_x_cnt = 0
+#_x_cnt = int(raw_input())
+#_x_i=0
+#_x = []
+#while _x_i < _x_cnt:
+#    _x_item = float(raw_input());
+#    _x.append(_x_item)
+#   _x_i+=1
+    
+
+#res = normalize_t(_x);
+res = normalize_t(test);
+
+for res_cur in res:
+    f.write( ("%20.3f"%res_cur).strip() + "\n" )
+
+f.close()
